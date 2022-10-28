@@ -6,12 +6,12 @@ public class Ex12AreaofCircle{
 		
 		Scanner userIn = new Scanner(System.in);
 		
-		System.out.println("Enter radius of circle: ");
+		System.out.println("Enter Radius Of Circle: ");
 		float radius = userIn.nextFloat();
 		
 		double areacircle = Math.PI * radius * radius;
 		
-		System.out.println("The area of the circle is: " + areacircle);
+		System.out.println("The Area Of The Circle is: " + areacircle);
         
     }
 }
