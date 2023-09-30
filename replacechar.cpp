@@ -1,25 +1,35 @@
 #include <iostream>
 using namespace std;
 
-
-void replaceCharacter(char input[], char c1, char c2) {
+int length(char a[], int len){
+    if(a[0] == '\0')
+        return len;
     
-    if(input[0]=='\0')
+    return length(a+1, len+1);
+}
+
+void remove(char a[],char c1,char c2){
+    if (a[0]=='\0'){
         return;
-    if(input[0]!=c1)
-        replaceCharacter(input+1,c1,c2);
-    else{
-        input[0]=c2;
-        replaceCharacter(input+1,c1,c2);
-    
-}
+    }
+
+    int n = length(a, 0);
+
+    if(a[0]!='\0'){
+        for (int i = 0; i < n; i++){
+            if(a[i] == c1){
+                a[i] = c2;
+            }
+        }   
+    }
 }
 
-int main() {
-    char input[1000000];
-    char c1, c2;
-    cin >> input;
-    cin >> c1 >> c2;
-    replaceCharacter(input, c1, c2);
-    cout << input << endl;
+int main(){
+    char c1,c2;
+    char a[100];
+    cin>>a;
+    cin>>c1>>c2;
+    
+    remove(a,c1,c2);
+    cout << a << "\n";
 }
