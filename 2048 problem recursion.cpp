@@ -14,7 +14,7 @@ void print_spelling(int n){
 	cout<<words[digit]<<" ";
 	return;
 	
-}
+} //recursion problem
 int main(){
 	int n;
 	cin>>n;
