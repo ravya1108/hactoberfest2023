@@ -1,7 +1,7 @@
 #include <iostream>
 #include<queue>
 using namespace std;
-
+//binary search tree
 class node{
     public:
         int data;
