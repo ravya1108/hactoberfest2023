@@ -2,7 +2,7 @@ import tkinter as tk
 
 def exit():
     window.destroy()
-
+//ipv4 decimal
 
 def convert():
     c = e1.get()
