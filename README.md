@@ -1,10 +1,10 @@
 # Hacktoberfest_C
 
-# First Contributions
+# First Contribution
 
 This project aims to simplify and guide the way beginners make their first contribution. If you are looking to make your first contribution, follow the steps below.
 
-_If you're not comfortable with command line, [here are tutorials using GUI tools.](#tutorials-using-other-tools)_
+_If you're not comfortable with command line use, [here are tutorials using GUI tools.](#tutorials-using-other-tools)_
 
 <img align="right" width="300" src="https://firstcontributions.github.io/assets/Readme/fork.png" alt="fork this repository" />
 
@@ -26,7 +26,7 @@ Open a terminal and run the following git command:
 
 ```
 
-git clone "url you just copied"
+git clone "https://github.com/ravya1108/hactoberfest2023.git"
 
 ```
 
@@ -42,7 +42,7 @@ git clone https://github.com/this-is-you/first-contributions.git
 
 ```
 
-where `this-is-you` is your GitHub username. Here you're copying the contents of the first-contributions repository on GitHub to your computer.
+where `this-is-you` is your GitHub username. Here you're copying the contents of the first-contribution repository on GitHub to your computer.
 
 ## Create a branch
 
@@ -84,11 +84,7 @@ Add those changes to the branch you just created using the `git add` command:
 
 git add Contributors.md
 
-```
-
 Now commit those changes using the `git commit` command:
-
-```
 
 git commit -m "Add <your-name> to Contributors list"
 

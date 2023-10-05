@@ -1,28 +1,29 @@
-// C++ recursive function to
-// solve tower of hanoi puzzle
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-void towerOfHanoi(int n, char from_rod, char to_rod,
-				char aux_rod)
-{
-	if (n == 0) {
+//tower of HANOI function implementation
+void TOH(int n,char Sour, char Aux,char Des)
+{ 
+	if(n==1)
+	{
+		cout<<"Move Disk "<<n<<" from "<<Sour<<" to "<<Des<<endl;
 		return;
 	}
-	towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
-	cout << "Move disk " << n << " from rod " << from_rod
-		<< " to rod " << to_rod << endl;
-	towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+	
+	TOH(n-1,Sour,Des,Aux);
+	cout<<"Move Disk "<<n<<" from "<<Sour<<" to "<<Des<<endl;
+	TOH(n-1,Aux,Sour,Des);
 }
 
-// Driver code
+//main program
 int main()
-{
-	int N = 3;
-
-	// A, B and C are names of rods
-	towerOfHanoi(N, 'A', 'C', 'B');
+{ 
+	int n;
+	
+	cout<<"Enter no. of disks:";	
+	cin>>n;
+	//calling the TOH 
+	TOH(n,'A','B','C');
+	
 	return 0;
 }
-
-// This is code is contributed by abhishek rohit
