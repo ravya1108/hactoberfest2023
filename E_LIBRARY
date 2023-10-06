@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct library{
+    char book_name[100];
+    char author[100];
+    int pages;
+    float price;
+};
+int main() {
+    struct library lib[100];
+    char author[100], book[100];
+    int i, input, count;
+    i = input = count = 0;
+    while(input != 5) {
+        printf("\nWelcome to e-library \n");
+        printf("\n1. ADD BOOK INFORMATION\n2. DISPLAY BOOK INFORMATION\n3. LIST BOOKS OF ALL AUTHORS\n4. TOTAL BOOK(s) IN LIBRARY\n5. EXIT");
+        printf("\nEnter one of the above: ");
+        scanf("%d", &input);
+        switch(input) {
+            case 1:
+            printf("Enter book name: ");
+            scanf(" %s", lib[i].book_name);
+            printf("Enter author name: ");
+            scanf("%s", &lib[i].author);
+            printf("Enter number of pages: ");
+            scanf("%d", &lib[i].pages);
+            printf("Enter price: ");
+            scanf("%.2f", &lib[i].price);
+            count++;
+            break;
+            case 2:
+            printf("You entered the following imformation");
+            for(i = 0; i < count; i++) {
+                printf("Book name: %s\n Author name: %s\n Number of pages: %d\n Price of the book: %f\n", lib[i].book_name, lib[i].author, lib[i].pages, lib[i].price);
+            }
+            break;
+            case 3: 
+            printf("Enter author name: ");
+            scanf("%s", author);
+            for(i = 0; i < count; i++) {
+                if(strcmp(author, lib[i].author)== 0) {
+                    printf("%s\n%s\n%d\n%f\n", lib[i].book_name, lib[i].author, lib[i].pages, lib[i].price);
+                }
+                break;
+                case 4:
+                printf("No. of books in library: %d", count);
+                break;
+                case 5:
+                {
+                    exit(0);
+                }
+            }
+        }
+    }
+    return 0;
+}
