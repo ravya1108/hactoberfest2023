@@ -1,0 +1,36 @@
+#include<stdio.h>
+void calculate(int n) {
+    int year, month, day;
+    year = n / 365;
+    n %= 365;
+    month = n / 30;
+    n %= 30;
+    day = n;
+    if(year > 0) {
+        printf("%d year", year); 
+        if(year > 1) {
+            printf("s");
+        }
+        printf(",");
+    }
+    if(month > 0) {
+        printf("%d month", month);
+        if(month > 1) {
+            printf("s");
+        }
+        printf(",");
+    }
+    if(n > 0) {
+        printf("%d day", n);
+        if(n > 1) {
+            printf("s");
+        }
+    }
+}
+int main() {
+    int day;
+    printf("Enter days: ");
+    scanf("%d", &day);
+    calculate(day);
+    return 0;
+}
