@@ -1,4 +1,5 @@
-#a)
+# a)
+
 
 def numbers(Students):
     list = []
@@ -8,22 +9,26 @@ def numbers(Students):
 
         n = {}
         for elements in list:
-
-            n = {elements:list.count(elements) for elements in list}
+            n = {elements: list.count(elements) for elements in list}
 
             return n
 
 
-#b)
+# b)
+
 
 def popular(n):
-    popular_course = max(n , key = n.get)
+    popular_course = max(n, key=n.get)
     return popular_course
 
 
-
-Students = [['math', 'phy', 'chem', 'cs'], ['math', 'phy'], ['math', 'chem'], ['history', 'eco']]
+Students = [
+    ["math", "phy", "chem", "cs"],
+    ["math", "phy"],
+    ["math", "chem"],
+    ["history", "eco"],
+]
 a = numbers(Students)
 print(a)
 b = popular(a)
-print("The most popular course is: ",b)
+print("The most popular course is: ", b)
