@@ -1,0 +1,24 @@
+#include<stdio.h>
+long toBin(int);
+int main() 
+{
+    long binary;
+    int decimal;
+    printf("Enter a number: ");
+    scanf("%d", &decimal);
+    binary = toBin(decimal);
+    printf("Binary is: %ld", binary);
+    return 0;
+}
+long toBin(int decimal)
+{
+    long binary = 0, remainder, f = 1;
+    while(decimal != 0) 
+    {
+        remainder = decimal % 2;
+        binary = binary + remainder * f;
+        f = f * 10;
+        decimal = decimal / 2;
+    }
+    return binary;
+}
