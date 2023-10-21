@@ -1,0 +1,125 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class CalculatorFrame extends JFrame {
+    private JTextField textField;
+
+    public CalculatorFrame() {
+        setTitle("Simple Calculator");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 400);
+        setLocationRelativeTo(null);
+
+        textField = new JTextField();
+        textField.setPreferredSize(new Dimension(250, 30));
+        add(textField, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 4));
+
+        String[] buttons = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "C", "0", "=", "+"};
+
+        for (String button : buttons) {
+            JButton b = new JButton(button);
+            b.addActionListener(new ButtonClickListener());
+            buttonPanel.add(b);
+        }
+
+        add(buttonPanel, BorderLayout.CENTER);
+    }
+
+    private class ButtonClickListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
+            if (command.equals("C")) {
+                textField.setText("");
+            } else if (command.equals("=")) {
+                String expression = textField.getText();
+                try {
+                    double result = evaluateExpression(expression);
+                    textField.setText(Double.toString(result));
+                } catch (Exception ex) {
+                    textField.setText("Error");
+                }
+            } else {
+                textField.setText(textField.getText() + command);
+            }
+        }
+    }
+
+    private double evaluateExpression(String expression) {
+        return new Object() {
+            int pos = -1, ch;
+
+            void nextChar() {
+                ch = (++pos < expression.length()) ? expression.charAt(pos) : -1;
+            }
+
+            boolean isDigit(int charToCheck) {
+                return charToCheck >= '0' && charToCheck <= '9';
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < expression.length()) throw new RuntimeException("Unexpected: " + (char) ch);
+                return x;
+            }
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (;;) {
+                    if (eat('+')) x += parseTerm(); // addition
+                    else if (eat('-')) x -= parseTerm(); // subtraction
+                    else return x;
+                }
+            }
+
+            double parseTerm() {
+                double x = parseFactor();
+                for (;;) {
+                    if (eat('*')) x *= parseFactor(); // multiplication
+                    else if (eat('/')) x /= parseFactor(); // division
+                    else return x;
+                }
+            }
+
+            double parseFactor() {
+                if (eat('+')) return parseFactor(); // unary plus
+                if (eat('-')) return -parseFactor(); // unary minus
+
+                double x;
+                int startPos = this.pos;
+                if (eat('(')) { // parentheses
+                    x = parseExpression();
+                    eat(')');
+                } else if (isDigit(ch)) { // numbers
+                    while (isDigit(ch)) nextChar();
+                    x = Double.parseDouble(expression.substring(startPos, this.pos));
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char) ch);
+                }
+
+                return x;
+            }
+
+            boolean eat(int charToEat) {
+                while (ch == ' ') nextChar();
+                if (ch == charToEat) {
+                    nextChar();
+                    return true;
+                }
+                return false;
+            }
+        }.parse();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                CalculatorFrame calculatorFrame = new CalculatorFrame();
+                calculatorFrame.setVisible(true);
+            }
+        });
+    }
+}
