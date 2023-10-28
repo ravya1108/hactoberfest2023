@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <stdexcept>
+
+bool isPalindrome(const std::string& str) {
+    // Remove spaces and convert to lowercase for case-insensitive comparison
+    std::string cleanedStr;
+    for (char c : str) {
+        if (!std::isspace(c)) {
+            cleanedStr += std::tolower(c);
+        }
+    }
+
+    int left = 0;
+    int right = cleanedStr.length() - 1;
+
+    while (left < right) {
+        if (cleanedStr[left] != cleanedStr[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+
+int main() {
+    try {
+        std::string input;
+        std::cout << "Enter a string: ";
+        std::getline(std::cin, input);
+
+        if (isPalindrome(input)) {
+            std::cout << "It's a palindrome!" << std::endl;
+        } else {
+            std::cout << "It's not a palindrome." << std::endl;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "An error occurred: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
